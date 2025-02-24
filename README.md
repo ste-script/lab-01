@@ -39,7 +39,7 @@ PCD a.y. 2024-2025 - ISI LM UNIBO - Cesena Campus
 
 
 
-- **Worl-in-Lab #2**
+- **Work-in-Lab #2**
 	- Preparation
 		- program `pcd.lab01.ex02` - it creates and sorts an array
 	- Exercise
