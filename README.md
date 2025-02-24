@@ -6,13 +6,9 @@ PCD a.y. 2024-2025 - ISI LM UNIBO - Cesena Campus
 ### Multithreaded programming in Java - Basics & Design discipline
 
 - Java Thread Basic API overlook – module-lab-1.1
-- First concurrent program in Java – pcd.lab01.hello
-	- Three threads: main thread + 2 threads	
-		- running the example, from an IDE and from the shell
+	- How to define / create / spwan threads
 	- A look at basic methods/mechanisms and Java System API  
-		- `start` vs. `run` methods
-		- `sleep`, `join`, `interrupt`
-		- `availableProcessors`, `currentTimeMillis`, `nanoTime` in `System`
+	- Example: `pcd.lab01.hello`
 - Focus on design: active & passive components    
 	- Active and passive components discipline
 		- an active component <=> a control flow
@@ -26,11 +22,11 @@ PCD a.y. 2024-2025 - ISI LM UNIBO - Cesena Campus
 			- `Screen`class based on [JANSI library](https://github.com/fusesource/jansi)
 			- `TestScreen` example
 	- Exercise
-		- Build a simple multithreaded program implementing the "falling words" animation on the console, that is: 
-			- given a sentence written on top of the screen (e.g. `This is a simple sentence with words ready to fall` written at (0, 10)), each word of the sentence should move down, asynchronously
-			- each word should have a different speed
-			- all words should stop at the botton of the screen
-		- Useful lib: `MiscLib` and its simple usage example: `TestMiscLib`
+		- Build a simple multithreaded program implementing the "falling words" animation on the console
+			- given a sentence written on top of the screen (e.g. `This is a simple sentence with words ready to fall` written at (0, 10)), each word of the sentence should move down, concurrently 
+				- each word should have a different speed
+				- all words should stop at the botton of the screen
+		- Useful lib: `AuxLib` and its simple usage example: `TestAuxLib`
 
 ### About Performance
 
