@@ -7,7 +7,7 @@ public class MultiSort {
 	static final int VECTOR_SIZE = 400_000_000;
 
 	public static void main(String[] args) {
-		var numberOfCpus = Runtime.getRuntime().availableProcessors();
+		var numberOfCpus = Runtime.getRuntime().availableProcessors() + 1;
 
 		log("Generating array...");
 		var v = genArray(VECTOR_SIZE);
@@ -16,7 +16,6 @@ public class MultiSort {
 		log("Sorting (" + VECTOR_SIZE + " elements)...");
 
 		long t0 = System.nanoTime();
-		numberOfCpus = numberOfCpus - 1;
 
 		// sort the array using all processors
 
@@ -25,10 +24,10 @@ public class MultiSort {
 		for (int i = 0; i < numberOfCpus; i++) {
 			var startPos = i * chunkSize;
 			var endPos = (i == numberOfCpus - 1) ? VECTOR_SIZE : startPos + chunkSize;
-			threads.add(new SortWorker(v, startPos, endPos));
+			var t = new SortWorker(v, startPos, endPos);
+			t.start();
+			threads.add(t);
 		}
-		threads.forEach(Thread::start);
-
 		threads.forEach(t -> {
 			try {
 				t.join();
@@ -37,6 +36,7 @@ public class MultiSort {
 			}
 		});
 
+		// merge the sorted parts of v int the main thread with a for
 		Arrays.sort(v);
 		long t1 = System.nanoTime();
 		log("Done. Time elapsed: " + ((t1 - t0) / 1000000) + " ms");
@@ -63,4 +63,5 @@ public class MultiSort {
 	private static void log(String msg) {
 		System.out.println(msg);
 	}
+
 }
